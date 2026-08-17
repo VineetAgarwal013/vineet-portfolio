@@ -567,6 +567,15 @@
         var MODAL = document.getElementById("vpModal");
         var CLOSE = document.getElementById("vpClose");
         var ballState = "idle";
+        var BALL_SFX = new Audio("pokeball-sfx.mp3");
+        BALL_SFX.volume = 0.85;
+        BALL_SFX.preload = "auto";
+
+        function playBallSfx() {
+          BALL_SFX.pause();
+          BALL_SFX.currentTime = 0;
+          BALL_SFX.play().catch(function () {});
+        }
 
         function open() {
           MODAL.classList.add("vp-open");
@@ -585,6 +594,7 @@
         BALL.addEventListener("click", function () {
           if (ballState !== "idle") return;
           ballState = "shake";
+          playBallSfx();
           BALL.classList.add("vp-shake");
           setTimeout(function () {
             if (ballState !== "shake") return;
