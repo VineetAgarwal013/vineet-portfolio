@@ -409,7 +409,7 @@ export const projects: Project[] = [
       "A working product end-to-end: AI bucketing on a live site, full CRUD board, drag-and-drop, deadlines, reminders (.ics), and a family-style onboarding flow. The architecture also solves a real deployment puzzle — same codebase runs as a full SQLite app locally and as a zero-backend demo on Vercel.",
     technologies: ["React", "AI", "SQLite", "Node.js", "LLMs", "Vercel"],
     github: "https://github.com/VineetAgarwal013/taskly",
-    website: "https://taskly-livid-zeta.vercel.app",
+    website: "https://vineet-taskly.vercel.app",
     previewChat: [
       {
         from: "user",
