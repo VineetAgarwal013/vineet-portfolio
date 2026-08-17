@@ -124,6 +124,31 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 ))}
               </div>
 
+              {(project.github || project.website) && (
+                <div className="mt-8 flex flex-wrap gap-3">
+                  {project.website && (
+                    <a
+                      href={project.website}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn btn-accent"
+                    >
+                      Visit live site →
+                    </a>
+                  )}
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn btn-outline"
+                    >
+                      View on GitHub →
+                    </a>
+                  )}
+                </div>
+              )}
+
               <div className="mt-10 flex flex-wrap gap-3">
                 <a href="#projects" onClick={onClose} className="btn btn-accent">
                   Back to projects

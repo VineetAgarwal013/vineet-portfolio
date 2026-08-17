@@ -10,6 +10,10 @@ const LANGUAGE_COLORS: Record<string, string> = {
   "Conversational UI": "#a371f7",
   React: "#58a6ff",
   "Intent matching": "#3fb950",
+  SQLite: "#0f80cc",
+  "Node.js": "#3c873a",
+  LLMs: "#e4b400",
+  Vercel: "#111111",
 };
 
 export default function Repos() {

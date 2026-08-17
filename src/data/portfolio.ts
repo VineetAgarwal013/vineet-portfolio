@@ -213,6 +213,8 @@ export interface Project {
   solution: string;
   outcome: string;
   technologies: string[];
+  github?: string;
+  website?: string;
   flow?: string[];
   previewChat?: ChatMessage[];
   chapters: ProjectChapter[];
@@ -392,12 +394,110 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    id: "taskly",
+    title: "Taskly AI — Smart Task Manager",
+    category: "AI × Product × Full-stack",
+    tagline:
+      "A smart task manager with an AI bucketer: type a task in plain English and it gets sorted into the right category, priority, and deadline automatically.",
+    preview: "chat",
+    problem:
+      "Task dumps are unstructured — 'buy milk', 'finish homework', 'dentist friday'. Sorting them into categories, priorities, and dates by hand is the most tedious part of task management, and most apps make you do that busywork before they're useful.",
+    solution:
+      "A kanban-style task board where a Gemini-powered AI classifies every new task — title, priority, due date, category — from a single natural-language input. Storage is dual-mode: a SQLite backend (with accounts and sessions) for local use, and a static + serverless Vercel deployment with a localStorage fallback, so the hosted demo needs no database server.",
+    outcome:
+      "A working product end-to-end: AI bucketing on a live site, full CRUD board, drag-and-drop, deadlines, reminders (.ics), and a family-style onboarding flow. The architecture also solves a real deployment puzzle — same codebase runs as a full SQLite app locally and as a zero-backend demo on Vercel.",
+    technologies: ["React", "AI", "SQLite", "Node.js", "LLMs", "Vercel"],
+    github: "https://github.com/VineetAgarwal013/taskly",
+    website: "https://taskly-livid-zeta.vercel.app",
+    previewChat: [
+      {
+        from: "user",
+        text: "buy milk tomorrow at 9am",
+      },
+      {
+        from: "assistant",
+        text: "Bucketed → 🥛 Buy milk · Priority: Medium · Due: Tomorrow 9:00 AM · Category: Items to Buy",
+      },
+      {
+        from: "user",
+        text: "finish homework friday!",
+      },
+      {
+        from: "assistant",
+        text: "Bucketed → 📚 Finish homework · Priority: High · Due: Friday · Category: Homework",
+      },
+    ],
+    chapters: [
+      {
+        kicker: "01 · The problem",
+        title: "Task apps make you work before you can work",
+        body: [
+          "Most task managers are inboxes with extra steps. The raw input is a messy sentence — 'buy milk', 'call dentist friday', 'finish the deck' — and the app demands you manually pick a category, a priority, and a date before the task is even saved.",
+          "That friction is exactly where people abandon task managers: the organizing is the chore.",
+        ],
+      },
+      {
+        kicker: "02 · The user",
+        title: "Families and households, not power users",
+        body: [
+          "The design center was a family-shared board: chores, groceries, homework, errands — many hands, one shared list. The person adding a task wants it captured and sorted in under five seconds, with the AI handling the taxonomy.",
+        ],
+      },
+      {
+        kicker: "03 · The insight",
+        title: "Classification is the product",
+        body: [
+          "A task sentence contains almost everything needed to organize it — deadlines are words ('tomorrow', 'friday', 'in 3 days'), priorities are tone ('urgent', 'asap'), and categories are learned from context.",
+          "If a model can read those signals reliably, the tedious metadata step disappears and the app becomes a good default for every task.",
+        ],
+      },
+      {
+        kicker: "04 · The solution",
+        title: "Type it like you'd say it",
+        body: [
+          "The dock input takes plain English. A Gemini-powered classify endpoint returns a structured task — title, priority (high/med/low), ISO due date, optional reminder time, and the best-fit category — which lands directly on the board.",
+          "When AI is unavailable the app degrades gracefully to smart keyword heuristics, so the board never stops working.",
+        ],
+      },
+      {
+        kicker: "05 · How it works",
+        title: "One board, three columns, zero ceremony",
+        body: [
+          "Tasks flow through a grounded kanban board with per-column completion, inline editing, drag-and-drop between categories, an overdue lane, and a 'clear finished' sweep with undo.",
+          "Deadlines render as relative badges (overdue in red, today in green, tomorrow in sky), and reminders generate a real .ics file that opens in Outlook, Apple, or Google Calendar.",
+        ],
+      },
+      {
+        kicker: "06 · Technology",
+        title: "One codebase, two deployment personalities",
+        body: [
+          "Locally the app runs on a Node server backed by SQLite (via sql.js) with accounts, hashed passwords, and bearer-token sessions — a genuine multi-user backend.",
+          "The same frontend deploys to Vercel as static files plus a single serverless function for AI classification, with storage falling back to per-browser localStorage when no API is reachable. The data layer detects which mode it's in and behaves accordingly.",
+        ],
+      },
+      {
+        kicker: "07 · Why it matters",
+        title: "A demo that's actually deployed",
+        body: [
+          "Most portfolio demos are screenshots. Taskly is a live, interactive product — create an account, add a task, watch the AI bucket it. The dual-storage architecture is also a real engineering decision with a clean trade-off: full backend locally, zero-maintenance hosted demo.",
+        ],
+      },
+      {
+        kicker: "08 · What I would do next",
+        title: "From demo to shared product",
+        body: [
+          "Move the hosted version to a managed database (Supabase or Neon) so the live demo has real accounts and sync. Add shared family lists with invitations, recurring tasks, and a voice input. The classify pipeline is model-agnostic and already swappable.",
+        ],
+      },
+    ],
+  },
 ];
 
 export const contact = {
   email: "",
   linkedin: "",
-  github: "",
+  github: "https://github.com/VineetAgarwal013",
   resume: "",
 };
 
