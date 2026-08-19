@@ -10,14 +10,12 @@ const AVATARS = {
   MC: { image: "/vineet-consultant.png", finger: { x: 0.448, y: 0.010 } },
 } as const;
 
-export type DexMode = "full" | "chat";
-
 export default function Landing({
   onOpenDex,
   ballTrigger,
   onOpenProjects,
 }: {
-  onOpenDex: (mode: DexMode) => void;
+  onOpenDex: () => void;
   ballTrigger: number;
   onOpenProjects: () => void;
 }) {
@@ -41,7 +39,7 @@ export default function Landing({
   }, [projectsOpen]);
 
   function handleAvatarClick() {
-    onOpenDex("chat");
+    onOpenDex();
   }
 
   function handleBallOpen() {
@@ -60,9 +58,7 @@ export default function Landing({
         {!ballGone && (
           <div className="relative">
             <div
-              className={`pp-ball-wrap transition-all duration-300 ${
-                projectsOpen ? "pp-ball-fade" : ""
-              }`}
+              className={`transition-all duration-300 ${projectsOpen ? "pp-ball-fade" : ""}`}
             >
               <PokeballButton
                 onOpen={handleBallOpen}

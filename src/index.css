@@ -4,23 +4,9 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --color-onyx: #0b0f17;
-  --color-onyx-2: #131c31;
-  --color-surface: #1e293b;
-  --color-surface-2: #131c31;
-  --color-ink: #f8fafc;
-  --color-muted: #94a3b8;
-  --color-faint: #64748b;
-  --color-line: #334155;
-
   --color-vp: #7b2cbf;
   --color-vp-strong: #9d4edd;
-  --color-vp-soft: #e0aaff;
-  --color-vp-deep: #1a002c;
   --color-magenta: #b5179e;
-
-  --color-mint: #10b981;
-  --color-amber: #f59e0b;
 }
 
 @layer base {
@@ -67,22 +53,6 @@ body {
     border-radius: 9999px;
     border: 2px solid #1e293b;
   }
-}
-
-@keyframes dex-pulse-dot {
-  0%,
-  100% {
-    opacity: 1;
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
-  }
-  50% {
-    opacity: 0.7;
-    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
-  }
-}
-
-.dex-status-dot {
-  animation: dex-pulse-dot 2s ease-in-out infinite;
 }
 
 @keyframes dex-typing {
@@ -209,26 +179,6 @@ body {
   animation: vp-pulse-text 2.4s ease-in-out infinite;
 }
 
-.vp-scroll-purple {
-  scrollbar-width: thin;
-  scrollbar-color: #c77dff #1e293b;
-}
-
-.vp-scroll-purple::-webkit-scrollbar {
-  width: 9px;
-}
-
-.vp-scroll-purple::-webkit-scrollbar-track {
-  background: #1e293b;
-  border-radius: 9999px;
-}
-
-.vp-scroll-purple::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #c77dff, #9d4edd);
-  border-radius: 9999px;
-  border: 2px solid #1e293b;
-}
-
 .vp-nav-btn {
   display: inline-flex;
   align-items: center;
@@ -311,43 +261,6 @@ body {
 
 /* ── Project Poké Balls (reusable) ─────────────────────────── */
 
-.pp-ball {
-  position: relative;
-  width: 128px;
-  aspect-ratio: 1 / 1;
-  cursor: pointer;
-  outline: none;
-  -webkit-tap-highlight-color: transparent;
-  animation: vp-sway 3.6s ease-in-out infinite alternate;
-}
-
-.pp-ball:focus-visible {
-  filter: drop-shadow(0 0 0 4px rgba(123, 44, 191, 0.45));
-}
-
-.pp-ball .vp-svg {
-  filter: drop-shadow(0 8px 16px rgba(26, 0, 44, 0.22));
-}
-
-@media (hover: hover) {
-  .pp-ball:hover .vp-svg {
-    transform: scale(1.05);
-    filter: drop-shadow(0 8px 16px rgba(26, 0, 44, 0.25))
-      drop-shadow(0 0 22px rgba(123, 44, 191, 0.4));
-  }
-}
-
-.pp-ball.vp-shake {
-  animation: vp-shake 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-
-.pp-shadow {
-  width: 84px;
-  height: 12px;
-  border-radius: 9999px;
-  background: radial-gradient(ellipse at center, rgba(26, 0, 44, 0.28), transparent 70%);
-}
-
 .pp-ball-fade {
   opacity: 0;
   transform: scale(0.8);
@@ -382,44 +295,5 @@ body {
   to {
     opacity: 0;
     transform: translateY(28px) scale(0.7);
-  }
-}
-
-.pp-beam {
-  border-radius: 9999px;
-  background: linear-gradient(180deg, rgba(224, 170, 255, 0.95), rgba(157, 78, 221, 0.35));
-  box-shadow: 0 0 18px rgba(157, 78, 221, 0.4);
-  transform-origin: top;
-  animation: pp-beam-in 0.4s ease-out both;
-}
-
-@keyframes pp-beam-in {
-  from {
-    transform: scaleY(0);
-  }
-  to {
-    transform: scaleY(1);
-  }
-}
-
-.pp-particle {
-  width: 6px;
-  height: 6px;
-  background: #9d4edd;
-  box-shadow: 0 0 8px rgba(157, 78, 221, 0.7);
-  animation: pp-float 3.2s ease-in-out infinite;
-}
-
-@keyframes pp-float {
-  0% {
-    transform: translateY(0);
-    opacity: 0;
-  }
-  30% {
-    opacity: 0.9;
-  }
-  100% {
-    transform: translateY(-34px);
-    opacity: 0;
   }
 }

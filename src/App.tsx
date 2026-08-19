@@ -6,13 +6,13 @@ import ProjectDexModal from "./components/dex/ProjectDexModal";
 import Ventures from "./components/dex/Ventures";
 
 export default function App() {
-  const [dexMode, setDexMode] = useState<"full" | "chat" | null>(null);
+  const [chatOpen, setChatOpen] = useState(false);
   const [ballTrigger, setBallTrigger] = useState(0);
 
   return (
     <main className="min-h-screen">
       <Landing
-        onOpenDex={setDexMode}
+        onOpenDex={() => setChatOpen(true)}
         ballTrigger={ballTrigger}
         onOpenProjects={() => setBallTrigger((t) => t + 1)}
       />
@@ -21,7 +21,7 @@ export default function App() {
       <Journey />
       <Footer />
 
-      {dexMode && <ProjectDexModal mode={dexMode} onClose={() => setDexMode(null)} />}
+      {chatOpen && <ProjectDexModal onClose={() => setChatOpen(false)} />}
     </main>
   );
 }
