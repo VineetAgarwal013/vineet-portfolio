@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, MapPin } from "lucide-react";
+import HatchingEgg from "./HatchingEgg";
+import ChatTerminal from "./ChatTerminal";
+import ProfileCard from "./ProfileCard";
+import { JOURNEY } from "./Journey";
 
 const TAGS = ["AI READY", "PRODUCTIVITY", "CALENDAR SCHEDULING", "0 TO 1"];
 
@@ -8,38 +12,6 @@ const IN_LAB = [
   { title: "Alumni Finder", subtitle: "Smart Networking" },
   { title: "Job Hunter", subtitle: "Career Automation" },
 ];
-
-function HatchingEgg() {
-  return (
-    <div className="dex-egg">
-      <svg width="80" height="96" viewBox="0 0 86 104" fill="none">
-        <path
-          d="M43 6 C 26 6 12 34 12 62 C 12 84 24 98 43 98 C 62 98 74 84 74 62 C 74 34 60 6 43 6 Z"
-          fill="#E0AAFF"
-          fillOpacity="0.08"
-          stroke="#C77DFF"
-          strokeWidth="2.5"
-        />
-        <path
-          className="dex-crack"
-          d="M43 6 L 43 22 L 34 30 L 40 40 L 30 50 L 38 60 L 34 68"
-          stroke="#C77DFF"
-          strokeWidth="2"
-          fill="none"
-          strokeLinecap="round"
-        />
-        <path
-          className="dex-crack"
-          d="M43 22 L 52 30 L 46 42 L 54 54 L 46 62"
-          stroke="#C77DFF"
-          strokeWidth="2"
-          fill="none"
-          strokeLinecap="round"
-        />
-      </svg>
-    </div>
-  );
-}
 
 function GithubIcon({ size = 16 }: { size?: number }) {
   return (
@@ -57,7 +29,13 @@ function LinkedinIcon({ size = 16 }: { size?: number }) {
   );
 }
 
-export default function ProjectDexModal({ onClose }: { onClose: () => void }) {
+export default function ProjectDexModal({
+  onClose,
+  mode = "full",
+}: {
+  onClose: () => void;
+  mode?: "full" | "chat";
+}) {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
@@ -72,7 +50,7 @@ export default function ProjectDexModal({ onClose }: { onClose: () => void }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-md md:p-8"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-md md:px-14 md:py-8"
       role="dialog"
       aria-modal="true"
       aria-label="Project Dex OS"
@@ -84,8 +62,29 @@ export default function ProjectDexModal({ onClose }: { onClose: () => void }) {
         initial={{ opacity: 0, scale: 0.94, y: 12 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="flex max-h-[95vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-[rgba(123,44,191,0.45)] bg-[rgba(15,23,42,0.92)] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.55),0_0_40px_rgba(123,44,191,0.16),inset_0_1px_0_rgba(255,255,255,0.06)]"
+        className={
+          mode === "chat"
+            ? "relative flex max-h-[95vh] w-full max-w-[1500px] flex-col overflow-hidden rounded-3xl border border-purple-100 bg-white/90 shadow-xl backdrop-blur-md lg:h-[560px]"
+            : "flex max-h-[95vh] w-full max-w-[1500px] flex-col overflow-hidden rounded-2xl border border-[rgba(123,44,191,0.45)] bg-[rgba(15,23,42,0.92)] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.55),0_0_40px_rgba(123,44,191,0.16),inset_0_1px_0_rgba(255,255,255,0.06)] lg:h-[560px]"
+        }
       >
+        {mode === "chat" ? (
+          <>
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Close"
+              className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-purple-200 bg-white/80 text-sm text-[#7B2CBF] transition-all duration-150 hover:scale-[1.08] hover:bg-[#7B2CBF] hover:text-white hover:shadow-[0_0_16px_rgba(123,44,191,0.4)]"
+            >
+              ✕
+            </button>
+            <section className="grid h-full grid-cols-1 gap-6 p-6 lg:grid-cols-[35%_65%] lg:p-8">
+              <ProfileCard />
+              <ChatTerminal sectionId="ai-assistant-modal" />
+            </section>
+          </>
+        ) : (
+        <>
         <div className="flex items-center gap-3 border-b border-slate-700/60 px-1 pb-4">
           <span className="h-2 w-2 rounded-full bg-[#b5179e] shadow-[0_0_8px_rgba(181,23,158,0.8)]" />
           <span className="h-2 w-2 rounded-full bg-[#9d4edd] shadow-[0_0_8px_rgba(157,78,221,0.7)]" />
@@ -103,7 +102,7 @@ export default function ProjectDexModal({ onClose }: { onClose: () => void }) {
           </button>
         </div>
 
-        <div className="vp-scroll-purple grid min-h-0 flex-1 grid-cols-1 gap-4 overflow-y-auto overscroll-contain md:grid-cols-3 mt-4">
+        <div className="vp-scroll-purple mt-4 grid min-h-0 flex-1 grid-cols-1 gap-4 overflow-y-auto overscroll-contain md:grid-cols-[35%_65%]">
           <div className="rounded-[14px] border border-[rgba(148,163,184,0.15)] bg-[#1e293b] p-4">
             <div className="relative mx-auto aspect-square w-full overflow-hidden rounded-xl shadow-[0_0_0_1px_rgba(123,44,191,0.35),0_0_18px_rgba(123,44,191,0.15)]">
               <img
@@ -155,7 +154,47 @@ export default function ProjectDexModal({ onClose }: { onClose: () => void }) {
           </div>
 
           <div className="md:col-span-2">
-            <div className="flex items-center justify-between">
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[11px] font-bold tracking-widest text-[#E0AAFF]">
+                  PROFESSIONAL JOURNEY
+                </span>
+                <span className="font-mono text-[10px] text-slate-500">▮▮ SCROLL ▮▮</span>
+              </div>
+
+              <div className="vp-scroll-purple mt-3 space-y-3 pr-1">
+                {JOURNEY.map((entry) => (
+                  <div
+                    key={entry.role}
+                    className="rounded-xl border border-slate-700/60 bg-[#0f172a] p-4 transition-colors hover:border-[#7B2CBF]/50"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="font-mono text-[9.5px] font-bold tracking-widest text-slate-500">
+                        {entry.period}
+                      </p>
+                      <span className="h-2 w-2 shrink-0 rounded-full bg-[#9D4EDD] shadow-[0_0_8px_rgba(157,78,221,0.9)]" />
+                    </div>
+                    <h4 className="mt-1 text-[13px] font-extrabold tracking-tight text-slate-100">
+                      {entry.role}
+                    </h4>
+                    <p className="mt-0.5 font-mono text-[10px] text-[#E0AAFF]">{entry.org}</p>
+                    <ul className="mt-2 space-y-1.5">
+                      {entry.points.map((p) => (
+                        <li
+                          key={p}
+                          className="flex gap-1.5 text-[11.5px] leading-relaxed text-slate-300/85"
+                        >
+                          <span className="mt-[6px] h-1 w-1 shrink-0 rounded-full bg-[#9D4EDD]" />
+                          {p}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-5 flex items-center justify-between">
               <span className="font-mono text-[11px] font-bold tracking-widest text-[#E0AAFF]">
                 PROJECT INDEX
               </span>
@@ -247,6 +286,8 @@ export default function ProjectDexModal({ onClose }: { onClose: () => void }) {
           <span className="font-mono text-[10px] text-slate-500">VINEET-013 · LVL 01</span>
           <span className="font-mono text-[10px] text-slate-500">© 2026 VINEET AGARWAL</span>
         </div>
+        </>
+        )}
       </motion.div>
     </div>
   );

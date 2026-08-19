@@ -9,9 +9,21 @@ function makeMessage(role: ChatMessage["role"], text: string): ChatMessage {
   return { id: messageId++, role, text };
 }
 
-export default function ChatTerminal() {
+export default function ChatTerminal({
+  sectionId = "ai-assistant",
+  title = "Get to Know Me...",
+  subtitle = "Ask anything about Vineet's experience, projects, skills, and journey.",
+  welcomeMessage = WELCOME_MESSAGE,
+  placeholder = "Ask me anything about Vineet...",
+}: {
+  sectionId?: string;
+  title?: string;
+  subtitle?: string;
+  welcomeMessage?: string;
+  placeholder?: string;
+}) {
   const [messages, setMessages] = useState<ChatMessage[]>([
-    makeMessage("ai", WELCOME_MESSAGE),
+    makeMessage("ai", welcomeMessage),
   ]);
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
@@ -48,12 +60,12 @@ export default function ChatTerminal() {
 
   function handleReset() {
     setTyping(false);
-    setMessages([makeMessage("ai", WELCOME_MESSAGE)]);
+    setMessages([makeMessage("ai", welcomeMessage)]);
   }
 
   return (
     <motion.section
-      id="ai-assistant"
+      id={sectionId}
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.1 }}
@@ -69,11 +81,8 @@ export default function ChatTerminal() {
         <RotateCcw size={15} />
       </button>
 
-      <h2 className="text-xl font-bold text-[#6366F1]">Ask Misty anything!</h2>
-      <p className="mt-1 max-w-lg text-sm text-slate-600">
-        Misty, Vineet's AI assistant, can answer questions about his experience, projects, skills,
-        and journey.
-      </p>
+      <h2 className="text-xl font-bold text-[#6366F1]">{title}</h2>
+      <p className="mt-1 max-w-lg text-sm text-slate-600">{subtitle}</p>
 
       <div className="mt-4 flex flex-wrap gap-2">
         {CHIPS.map((chip) => (
@@ -128,8 +137,8 @@ export default function ChatTerminal() {
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask me anything about Vineet..."
-          aria-label="Ask me anything about Vineet"
+          placeholder={placeholder}
+          aria-label={placeholder}
           className="w-full bg-transparent px-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none"
         />
         <button

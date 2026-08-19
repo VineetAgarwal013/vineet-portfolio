@@ -5,9 +5,10 @@ export type ChatMessage = {
 };
 
 export const WELCOME_MESSAGE =
-  "Hi there! I'm Misty, Vineet's AI assistant. Ask me anything about his product roadmap experience, technical AI background, or Rice MBA journey.\n\nTry: Work Experience · Projects · Skills · MBA Journey · Product Strategy";
+  "Hi! I'm Vineet's AI assistant. Ask me anything about his product roadmap experience, technical AI background, or Rice MBA journey.\n\nTry: Work Experience · Projects · Skills · MBA Journey · Product Strategy";
 
-const EMAIL = "va57@rice.edu";
+export const EMAIL = "va57@rice.edu";
+export const PHONE = "+1 (408) 627-5574";
 
 export const CHIPS = [
   {
@@ -81,7 +82,8 @@ const ROUTES: Route[] = [
     response:
       "Vineet is based in Houston, TX and is open to AI PM roles in the US.\n• Email: " +
       EMAIL +
-      "\n• Phone: +1 (408) 627-5574",
+      "\n• Phone: " +
+      PHONE,
   },
 ];
 

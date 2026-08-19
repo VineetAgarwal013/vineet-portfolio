@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 
-type JourneyEntry = {
+export type JourneyEntry = {
   period: string;
   role: string;
   org: string;
   points: string[];
 };
 
-const JOURNEY: JourneyEntry[] = [
+export const JOURNEY: JourneyEntry[] = [
   {
     period: "2024 — 2026",
     role: "Associate Consultant, Product Strategy",

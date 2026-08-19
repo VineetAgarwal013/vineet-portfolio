@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const BALL_SFX = new Audio("/pokeball-sfx.mp3");
-BALL_SFX.volume = 0.08;
+BALL_SFX.volume = 0.04;
 BALL_SFX.preload = "auto";
 
 function playBallSfx() {
@@ -12,10 +12,26 @@ function playBallSfx() {
 
 type BallPhase = "idle" | "shake" | "open" | "hold";
 
-export default function PokeballButton({ onOpen }: { onOpen: () => void }) {
+export default function PokeballButton({
+  onOpen,
+  onClose,
+  controlledOpen = false,
+  trigger = 0,
+}: {
+  onOpen?: () => void;
+  onClose?: () => void;
+  controlledOpen?: boolean;
+  trigger?: number;
+}) {
   const [phase, setPhase] = useState<BallPhase>("idle");
   const phaseRef = useRef<BallPhase>("idle");
   const timers = useRef<number[]>([]);
+  const lastTrigger = useRef(trigger);
+
+  useEffect(() => {
+    if (controlledOpen) setPhaseSafe("hold");
+    else setPhaseSafe("idle");
+  }, [controlledOpen]);
 
   useEffect(
     () => () => timers.current.forEach((t) => window.clearTimeout(t)),
@@ -28,7 +44,11 @@ export default function PokeballButton({ onOpen }: { onOpen: () => void }) {
   }
 
   function handleClick() {
-    if (phaseRef.current !== "idle") return;
+    if (controlledOpen) {
+      onClose?.();
+      return;
+    }
+    if (!onOpen || phaseRef.current !== "idle") return;
     setPhaseSafe("shake");
     playBallSfx();
     timers.current.push(
@@ -46,14 +66,21 @@ export default function PokeballButton({ onOpen }: { onOpen: () => void }) {
     );
   }
 
+  useEffect(() => {
+    if (trigger !== lastTrigger.current) {
+      lastTrigger.current = trigger;
+      handleClick();
+    }
+  }, [trigger]);
+
   return (
     <div className="flex flex-col items-center">
       <div
         className={`vp-ball ${phase === "shake" ? "vp-shake" : ""}`}
-        role="button"
-        tabIndex={0}
-        aria-label="Open Project Dex"
-        aria-haspopup="dialog"
+        role={onOpen ? "button" : undefined}
+        tabIndex={onOpen ? 0 : undefined}
+        aria-label={controlledOpen ? "Close Project Dex" : "Open Project Dex"}
+        aria-haspopup={onOpen ? "dialog" : undefined}
         onClick={handleClick}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
@@ -115,9 +142,6 @@ export default function PokeballButton({ onOpen }: { onOpen: () => void }) {
           </g>
         </svg>
       </div>
-      <p className="vp-retro vp-pulse-text mt-8 text-[10px] tracking-wider text-[#8B5FC9]">
-        CLICK TO EXPLORE
-      </p>
     </div>
   );
 }

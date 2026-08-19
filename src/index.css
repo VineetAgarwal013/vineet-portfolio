@@ -260,6 +260,16 @@ body {
   color: #ffffff;
 }
 
+.vp-nav-agent {
+  background: #f0abfc;
+  color: #1a002c;
+}
+
+.vp-nav-projects {
+  background: #9d4edd;
+  color: #ffffff;
+}
+
 .vp-svg {
   display: block;
   width: 100%;
@@ -297,4 +307,119 @@ body {
 
 .vp-svg.vp-open .vp-center {
   transform: translateY(-52px);
+}
+
+/* ── Project Poké Balls (reusable) ─────────────────────────── */
+
+.pp-ball {
+  position: relative;
+  width: 128px;
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  animation: vp-sway 3.6s ease-in-out infinite alternate;
+}
+
+.pp-ball:focus-visible {
+  filter: drop-shadow(0 0 0 4px rgba(123, 44, 191, 0.45));
+}
+
+.pp-ball .vp-svg {
+  filter: drop-shadow(0 8px 16px rgba(26, 0, 44, 0.22));
+}
+
+@media (hover: hover) {
+  .pp-ball:hover .vp-svg {
+    transform: scale(1.05);
+    filter: drop-shadow(0 8px 16px rgba(26, 0, 44, 0.25))
+      drop-shadow(0 0 22px rgba(123, 44, 191, 0.4));
+  }
+}
+
+.pp-ball.vp-shake {
+  animation: vp-shake 0.55s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.pp-shadow {
+  width: 84px;
+  height: 12px;
+  border-radius: 9999px;
+  background: radial-gradient(ellipse at center, rgba(26, 0, 44, 0.28), transparent 70%);
+}
+
+.pp-ball-fade {
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+}
+
+.pp-card {
+  animation: pp-card-in 0.45s cubic-bezier(0.34, 1.4, 0.44, 1) both;
+  transform-origin: top center;
+}
+
+.pp-card.pp-card-out {
+  animation: pp-card-out 0.25s ease-in both;
+}
+
+@keyframes pp-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(56px) scale(0.55);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pp-card-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(28px) scale(0.7);
+  }
+}
+
+.pp-beam {
+  border-radius: 9999px;
+  background: linear-gradient(180deg, rgba(224, 170, 255, 0.95), rgba(157, 78, 221, 0.35));
+  box-shadow: 0 0 18px rgba(157, 78, 221, 0.4);
+  transform-origin: top;
+  animation: pp-beam-in 0.4s ease-out both;
+}
+
+@keyframes pp-beam-in {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.pp-particle {
+  width: 6px;
+  height: 6px;
+  background: #9d4edd;
+  box-shadow: 0 0 8px rgba(157, 78, 221, 0.7);
+  animation: pp-float 3.2s ease-in-out infinite;
+}
+
+@keyframes pp-float {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-34px);
+    opacity: 0;
+  }
 }
