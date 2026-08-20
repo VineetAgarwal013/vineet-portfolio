@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import Header from "./Header";
 import PokeballButton from "./PokeballButton";
 import ProjectCard from "./ProjectCard";
-import GetToKnowMeCallout from "./GetToKnowMeCallout";
 import { PROJECTS } from "../../data/projects";
 
 const AVATARS = {
-  PM: { image: "/pokemon-avatar.png", finger: { x: 0.474, y: 0.003 } },
-  MC: { image: "/vineet-consultant.png", finger: { x: 0.448, y: 0.010 } },
+  PM: "/pokemon-avatar.png",
+  MC: "/vineet-consultant.png",
 } as const;
 
 export default function Landing({
@@ -132,7 +131,7 @@ export default function Landing({
       </div>
 
       <div
-        className="absolute bottom-6 left-6 md:left-10"
+        className="absolute bottom-6 left-4 flex items-end gap-2 md:left-8 md:gap-3"
         onClick={(e) => e.stopPropagation()}
       >
         <div
@@ -146,54 +145,55 @@ export default function Landing({
             }
           }}
           aria-label="Open Project Dex"
-          className="group flex cursor-pointer flex-col items-start gap-1 text-left"
+          className="group shrink-0 cursor-pointer"
         >
-          <span className="relative block">
-            <img
-              src={AVATARS[role].image}
-              alt="Vineet Agarwal"
-              className="-scale-x-100 h-48 w-auto object-contain transition-all group-hover:drop-shadow-[0_0_16px_rgba(123,44,191,0.35)] md:h-72"
-            />
-            <GetToKnowMeCallout
-              finger={AVATARS[role].finger}
-              onClick={handleAvatarClick}
-            />
-          </span>
-          <div
-            className="rounded-2xl border-2 border-[#1a002c] bg-white px-4 py-3 shadow-[3px_3px_0_#1a002c]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <p className="font-mono text-[11px] font-bold leading-snug text-[#1a002c]">
-              Are you a Management Consultant
-              <br />
-              or Product Manager?
-            </p>
-            <div className="mt-2 flex gap-2">
-              <button
-                type="button"
-                onClick={() => setRole("MC")}
-                aria-pressed={role === "MC"}
-                className={`cursor-pointer rounded-full border-2 px-3 py-1 font-mono text-[10px] font-bold transition-colors ${
-                  role === "MC"
-                    ? "border-[#1a002c] bg-vp text-white"
-                    : "border-purple-200 bg-white text-vp hover:border-vp/40"
-                }`}
-              >
-                Management Consultant
-              </button>
-              <button
-                type="button"
-                onClick={() => setRole("PM")}
-                aria-pressed={role === "PM"}
-                className={`cursor-pointer rounded-full border-2 px-3 py-1 font-mono text-[10px] font-bold transition-colors ${
-                  role === "PM"
-                    ? "border-[#1a002c] bg-vp text-white"
-                    : "border-purple-200 bg-white text-vp hover:border-vp/40"
-                }`}
-              >
-                Product Manager
-              </button>
-            </div>
+          <img
+            src={AVATARS[role]}
+            alt="Vineet Agarwal"
+            className="-scale-x-100 h-20 w-auto object-contain transition-all group-hover:drop-shadow-[0_0_16px_rgba(123,44,191,0.35)] md:h-36"
+          />
+        </div>
+
+        <div className="relative rounded-2xl border-2 border-[#1a002c] bg-white px-4 py-3 shadow-[3px_3px_0_#1a002c]">
+          <span
+            aria-hidden="true"
+            className="absolute -left-[10px] top-1/2 h-0 w-0 -translate-y-1/2 border-y-[9px] border-r-[10px] border-y-transparent border-r-[#1a002c]"
+          />
+          <span
+            aria-hidden="true"
+            className="absolute -left-[8px] top-1/2 h-0 w-0 -translate-y-1/2 border-y-[7px] border-r-[8px] border-y-transparent border-r-white"
+          />
+          <p className="font-mono text-[11px] font-bold leading-snug text-[#1a002c]">
+            Tailor My Profile
+          </p>
+          <p className="mt-0.5 font-mono text-[10px] text-slate-500">
+            Select your role to adapt my experience:
+          </p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => setRole("MC")}
+              aria-pressed={role === "MC"}
+              className={`cursor-pointer rounded-full border-2 px-3 py-1 font-mono text-[10px] font-bold transition-colors ${
+                role === "MC"
+                  ? "border-[#1a002c] bg-vp text-white"
+                  : "border-purple-200 bg-white text-vp hover:border-vp/40"
+              }`}
+            >
+              Management Consultant
+            </button>
+            <button
+              type="button"
+              onClick={() => setRole("PM")}
+              aria-pressed={role === "PM"}
+              className={`cursor-pointer rounded-full border-2 px-3 py-1 font-mono text-[10px] font-bold transition-colors ${
+                role === "PM"
+                  ? "border-[#1a002c] bg-vp text-white"
+                  : "border-purple-200 bg-white text-vp hover:border-vp/40"
+              }`}
+            >
+              Product Manager
+            </button>
           </div>
         </div>
       </div>
