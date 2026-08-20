@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Footer from "./components/dex/Footer";
-import Journey from "./components/dex/Journey";
 import Landing from "./components/dex/Landing";
 import ProjectDexModal from "./components/dex/ProjectDexModal";
 import Ventures from "./components/dex/Ventures";
@@ -18,7 +17,6 @@ export default function App() {
       />
 
       <Ventures />
-      <Journey />
       <Footer />
 
       {chatOpen && <ProjectDexModal onClose={() => setChatOpen(false)} />}
