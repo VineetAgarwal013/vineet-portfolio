@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import Header from "./Header";
 import PokeballButton from "./PokeballButton";
 import ProjectCard from "./ProjectCard";
+import GetToKnowMeCallout from "./GetToKnowMeCallout";
 import { PROJECTS } from "../../data/projects";
 
 const AVATARS = {
-  PM: "/pokemon-avatar.png",
-  MC: "/vineet-consultant.png",
+  PM: { image: "/pokemon-avatar.png", finger: { x: 0.474, y: 0.003 } },
+  MC: { image: "/vineet-consultant.png", finger: { x: 0.448, y: 0.010 } },
 } as const;
 
 export default function Landing({
@@ -145,12 +146,16 @@ export default function Landing({
             }
           }}
           aria-label="Open Project Dex"
-          className="group shrink-0 cursor-pointer"
+          className="group relative shrink-0 cursor-pointer"
         >
           <img
-            src={AVATARS[role]}
+            src={AVATARS[role].image}
             alt="Vineet Agarwal"
-            className="-scale-x-100 h-20 w-auto object-contain transition-all group-hover:drop-shadow-[0_0_16px_rgba(123,44,191,0.35)] md:h-36"
+            className="-scale-x-100 h-24 w-auto object-contain transition-all group-hover:drop-shadow-[0_0_16px_rgba(123,44,191,0.35)] md:h-56"
+          />
+          <GetToKnowMeCallout
+            finger={AVATARS[role].finger}
+            onClick={handleAvatarClick}
           />
         </div>
 
