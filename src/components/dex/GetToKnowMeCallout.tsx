@@ -34,7 +34,11 @@ export default function GetToKnowMeCallout({
       </span>
       <span
         aria-hidden="true"
-        className="absolute -bottom-[8px] -left-[8px] h-4 w-4 border-b-2 border-l-2 border-[#1a002c] bg-[#F0ABFC]"
+        className="absolute -bottom-[10px] -left-[8px] h-0 w-0 border-l-[8px] border-r-[8px] border-t-[10px] border-l-transparent border-r-transparent border-t-[#1a002c]"
+      />
+      <span
+        aria-hidden="true"
+        className="absolute -bottom-[10px] -left-[8px] h-0 w-0 border-l-[7px] border-r-[7px] border-t-[8px] border-l-transparent border-r-transparent border-t-[#F0ABFC]"
       />
     </button>
   );
