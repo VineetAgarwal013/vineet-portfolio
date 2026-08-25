@@ -37,24 +37,45 @@ export default function ChatTerminal({
     if (feed) feed.scrollTop = feed.scrollHeight;
   }, [messages, typing]);
 
-  function pushWithTyping(question: string, response: string) {
+  async function ask(question: string) {
     setMessages((prev) => [...prev, makeMessage("user", question)]);
     setTyping(true);
-    setTimeout(() => {
-      setTyping(false);
-      setMessages((prev) => [...prev, makeMessage("ai", response)]);
-    }, 950);
+
+    const history = messages.map((m) => ({
+      role: m.role === "user" ? "user" : "assistant",
+      content: m.text,
+    }));
+
+    let answer: string;
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: question, history }),
+      });
+      if (!res.ok) throw new Error("bad status " + res.status);
+      const data = await res.json();
+      answer =
+        typeof data?.text === "string" && data.text.trim()
+          ? data.text
+          : respondToInput(question);
+    } catch {
+      answer = respondToInput(question);
+    }
+
+    setTyping(false);
+    setMessages((prev) => [...prev, makeMessage("ai", answer)]);
   }
 
   function handleChip(chip: (typeof CHIPS)[number]) {
-    pushWithTyping(chip.prompt, chip.response);
+    ask(chip.prompt);
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const question = input.trim();
     if (!question || typing) return;
-    pushWithTyping(question, respondToInput(question));
+    ask(question);
     setInput("");
   }
 
