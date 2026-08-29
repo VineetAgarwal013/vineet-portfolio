@@ -2,7 +2,7 @@ import "dotenv/config";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { encode, decode } from "gpt-tokenizer";
-import { embed } from "../api/lib/openai";
+import { embed } from "../api/lib/engine";
 import { getIndex } from "../api/lib/pinecone";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
@@ -95,8 +95,23 @@ async function main() {
 
   console.log(`Prepared ${chunks.length} chunks from ${files.length} files.`);
 
-  const embedModel = process.env.EMBEDDING_MODEL || "text-embedding-3-small";
+  const embeddingProvider = (
+    process.env.EMBEDDING_PROVIDER || "gemini"
+  ).toLowerCase();
+  const embedModel =
+    process.env.EMBEDDING_MODEL ||
+    (embeddingProvider === "openai"
+      ? "text-embedding-3-small"
+      : "text-embedding-004");
   const index = getIndex();
+
+  let expectedDim: number | undefined;
+  try {
+    const stats = await index.describeIndexStats();
+    if (typeof stats.dimension === "number") expectedDim = stats.dimension;
+  } catch {
+    // describeIndexStats may be unavailable on some plans; skip the guard.
+  }
 
   const BATCH = 100;
   for (let i = 0; i < chunks.length; i += BATCH) {
@@ -104,6 +119,12 @@ async function main() {
     const vectors = [];
     for (const c of slice) {
       const values = await embed(c.text, embedModel);
+      if (expectedDim && values.length !== expectedDim) {
+        throw new Error(
+          `Embedding dimension (${values.length}) does not match Pinecone index dimension (${expectedDim}). ` +
+            `Recreate the index at ${values.length} (e.g. OpenAI=1536, Gemini=768) or change EMBEDDING_PROVIDER.`,
+        );
+      }
       vectors.push({
         id: c.id,
         values,

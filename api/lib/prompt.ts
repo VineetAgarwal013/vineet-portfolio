@@ -1,4 +1,4 @@
-import type { ChatMessage } from "./openai";
+import type { ChatMessage } from "./engine";
 
 export function buildSystemPrompt(
   context: { text: string; source: string; title: string }[],

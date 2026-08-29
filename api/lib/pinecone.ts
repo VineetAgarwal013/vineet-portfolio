@@ -1,5 +1,5 @@
 import { Pinecone } from "@pinecone-database/pinecone";
-import { embed } from "./openai";
+import { embed } from "./engine";
 
 let client: Pinecone | null = null;
 

@@ -1,5 +1,5 @@
 import { retrieveContext } from "./lib/pinecone";
-import { complete, type ChatMessage } from "./lib/openai";
+import { complete, type ChatMessage } from "./lib/engine";
 import { buildSystemPrompt, buildMessages } from "./lib/prompt";
 
 export const config = { runtime: "nodejs" };

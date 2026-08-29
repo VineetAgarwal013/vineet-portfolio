@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import type { ChatMessage } from "../types";
 
 let client: OpenAI | null = null;
 
@@ -18,11 +19,6 @@ export async function embed(
   const res = await getClient().embeddings.create({ model, input: text });
   return res.data[0].embedding;
 }
-
-export type ChatMessage = {
-  role: "user" | "assistant" | "system";
-  content: string;
-};
 
 export async function complete(messages: ChatMessage[]): Promise<string> {
   const model = process.env.LLM_MODEL || "gpt-4o-mini";
