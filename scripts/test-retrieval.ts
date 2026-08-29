@@ -1,4 +1,6 @@
-import "dotenv/config";
+import * as dotenv from "dotenv";
+dotenv.config();
+dotenv.config({ path: "config/.env.local" });
 import { retrieveContext } from "../api/lib/pinecone";
 
 const SAMPLES = [
