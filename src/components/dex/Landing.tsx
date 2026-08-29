@@ -55,9 +55,9 @@ export default function Landing({
     <section id="landing" className="relative flex min-h-screen flex-col">
       <Header onOpenAgent={handleAvatarClick} onOpenProjects={onOpenProjects} />
 
-      {/* FIRST: chatbot on the front screen */}
-      <div className="flex flex-1 flex-col items-center justify-center px-6 py-14">
-        <div className="h-[68vh] w-full max-w-2xl md:h-[560px]">
+      {/* FIRST: full-screen chatbot landing */}
+      <div className="flex min-h-screen flex-col items-center justify-center px-6 py-12">
+        <div className="h-[84vh] w-full max-w-3xl">
           <ChatTerminal sectionId="ai-assistant" />
         </div>
       </div>
