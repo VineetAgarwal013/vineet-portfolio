@@ -49,4 +49,14 @@ export const PROJECTS: Project[] = [
     category: "IN LAB",
     image: "/projects/_card-design.png",
   },
+  {
+    id: "excel-sticky-keys",
+    title: "Excel Sticky Keys",
+    subtitle: "Excel Productivity Helper",
+    description:
+      "Productivity tool that keeps key actions pinned and one tap away for faster Excel workflows.",
+    tags: ["Excel", "Automation", "Productivity", "MVP"],
+    category: "IN LAB",
+    image: "/projects/_card-design.png",
+  },
 ];

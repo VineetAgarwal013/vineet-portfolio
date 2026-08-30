@@ -78,6 +78,27 @@ export default function ProjectCard({
               {project.title.toUpperCase()}
             </span>
           </div>
+        ) : project.id === "excel-sticky-keys" ? (
+          <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-[#107C10] via-[#185C37] to-[#0E3A2A]">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-10 w-10 text-white/90"
+              aria-hidden="true"
+            >
+              <rect x="3" y="4" width="18" height="16" rx="2" />
+              <path d="M3 10h18" />
+              <path d="M8 10v10" />
+              <path d="M13 10v10" />
+            </svg>
+            <span className="font-mono text-lg font-extrabold tracking-widest text-white drop-shadow">
+              {project.title.toUpperCase()}
+            </span>
+          </div>
         ) : project.image ? (
           <img
             src={project.image}
