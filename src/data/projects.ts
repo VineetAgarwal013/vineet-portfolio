@@ -25,6 +25,7 @@ export const PROJECTS: Project[] = [
       "Automates daily workflow prioritization and eliminates manual task backlogs.",
     tags: ["AI READY", "PRODUCTIVITY", "CALENDAR SCHEDULING", "0 TO 1"],
     category: "SHIPPED",
+    image: "/projects/_card-design.png",
     demo: "https://vineet-taskly.vercel.app/",
     github: "https://github.com/VineetAgarwal013/taskly",
   },
@@ -35,6 +36,7 @@ export const PROJECTS: Project[] = [
     description: "(PLACEHOLDER — add real description)",
     tags: [],
     category: "IN LAB",
+    image: "/projects/_card-design.png",
   },
   {
     id: "job-hunter",
@@ -43,5 +45,6 @@ export const PROJECTS: Project[] = [
     description: "(PLACEHOLDER — add real description)",
     tags: [],
     category: "IN LAB",
+    image: "/projects/_card-design.png",
   },
 ];
