@@ -4,6 +4,7 @@ import PokeballButton from "./PokeballButton";
 import ProjectCard from "./ProjectCard";
 import GetToKnowMeCallout from "./GetToKnowMeCallout";
 import ChatTerminal from "./ChatTerminal";
+import ProfileCard from "./ProfileCard";
 import { PROJECTS } from "../../data/projects";
 
 const AVATARS = {
@@ -55,11 +56,15 @@ export default function Landing({
     <section id="landing" className="relative flex min-h-screen flex-col">
       <Header onOpenAgent={handleAvatarClick} onOpenProjects={onOpenProjects} />
 
-      {/* FIRST: full-screen chatbot landing */}
-      <div className="flex min-h-screen flex-col items-center justify-center px-6 py-12">
-        <div className="h-[84vh] w-full max-w-3xl">
+      {/* FIRST: AI agent as the front screen */}
+      <div
+        id="ai-agent"
+        className="flex min-h-screen flex-col items-center justify-center px-4 py-12 md:px-10"
+      >
+        <section className="grid w-full max-w-[1500px] grid-cols-1 gap-6 rounded-3xl border border-purple-100 bg-white/90 p-4 shadow-xl backdrop-blur-md md:p-6 lg:h-[560px] lg:grid-cols-[35%_65%] lg:overflow-hidden lg:p-8">
+          <ProfileCard />
           <ChatTerminal sectionId="ai-assistant" />
-        </div>
+        </section>
       </div>
 
       {/* NEXT PART: the existing hero (avatar + ball + placeholders) */}
