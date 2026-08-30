@@ -34,23 +34,24 @@ export default function ProfileCard() {
       <p className="mt-1 text-base font-semibold text-[#6366F1]">AI Product Manager</p>
       <p className="mt-0.5 text-sm text-slate-500">Rice MBA · Engineer</p>
 
-      <div className="mt-6 flex items-center gap-3">
+      <div className="mt-6 flex items-center justify-center gap-3">
         <a
           href="https://www.linkedin.com/in/vin-agarwal/"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex h-10 items-center gap-2 rounded-full border border-slate-300 px-5 text-sm font-medium text-slate-700 transition-all hover:border-indigo-300 hover:bg-[#F3F0FF] hover:text-indigo-600"
+          aria-label="LinkedIn"
+          className="flex items-center gap-1.5 rounded-lg bg-[#0A66C2] px-3 py-1.5 text-sm font-semibold text-white transition-transform hover:scale-105"
         >
-          <LinkedinIcon size={15} />
-          LinkedIn
+          <LinkedinIcon size={16} />
         </a>
         <a
           href="https://github.com/VineetAgarwal013"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex h-10 items-center gap-2 rounded-full border border-slate-300 px-5 text-sm font-medium text-slate-700 transition-all hover:border-indigo-300 hover:bg-[#F3F0FF] hover:text-indigo-600"
+          aria-label="GitHub"
+          className="flex items-center gap-1.5 rounded-lg bg-[#0A0A0A] px-3 py-1.5 text-sm font-semibold text-white transition-transform hover:scale-105"
         >
-          <GithubIcon size={15} />
+          <GithubIcon size={16} />
           GitHub
         </a>
       </div>

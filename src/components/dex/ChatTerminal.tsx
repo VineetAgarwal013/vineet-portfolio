@@ -11,7 +11,7 @@ function makeMessage(role: ChatMessage["role"], text: string): ChatMessage {
 
 export default function ChatTerminal({
   sectionId = "ai-assistant",
-  title = "Get to Know Me...",
+  title = "Ask Me Anything...",
   subtitle = "Ask anything about Vineet's experience, projects, skills, and journey.",
   welcomeMessage = WELCOME_MESSAGE,
   placeholder = "Ask me anything about Vineet...",
@@ -97,9 +97,9 @@ export default function ChatTerminal({
         onClick={handleReset}
         title="Reset Conversation"
         aria-label="Reset Conversation"
-        className="absolute right-5 top-5 grid h-8 w-8 place-items-center rounded-lg text-slate-400 transition-all hover:bg-[#EEF2FF] hover:text-[#4F46E5]"
+        className="absolute right-5 top-5 grid h-10 w-10 place-items-center rounded-xl border border-purple-100 bg-white text-slate-500 shadow-sm transition-all hover:border-vp/30 hover:bg-[#EEF2FF] hover:text-[#4F46E5]"
       >
-        <RotateCcw size={15} />
+        <RotateCcw size={18} />
       </button>
 
       <h2 className="text-xl font-bold text-[#6366F1]">{title}</h2>

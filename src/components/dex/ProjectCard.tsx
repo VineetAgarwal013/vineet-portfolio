@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { Project } from "../../data/projects";
 
 export default function ProjectCard({
@@ -10,25 +11,96 @@ export default function ProjectCard({
   delay?: number;
 }) {
   const isShipped = project.category === "SHIPPED";
+  const [zoom, setZoom] = useState(false);
+
+  function handleClick() {
+    setZoom(true);
+    window.setTimeout(() => setZoom(false), 300);
+    if (project.demo) {
+      window.open(project.demo, "_blank", "noopener,noreferrer");
+    }
+  }
 
   return (
     <div
-      className={`pp-card flex w-[290px] flex-col overflow-hidden rounded-[14px] border border-gray-200/90 bg-white shadow-[0_6px_24px_rgba(0,0,0,0.07)] ${
-        emerging ? "" : "pp-card-out"
-      }`}
+      onClick={handleClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleClick();
+        }
+      }}
+      className={`pp-card flex w-[290px] cursor-pointer flex-col overflow-hidden rounded-[14px] border border-gray-200/90 bg-white shadow-[0_6px_24px_rgba(0,0,0,0.07)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_rgba(0,0,0,0.14)] active:scale-95 ${
+        zoom ? "scale-[1.06]" : ""
+      } ${emerging ? "" : "pp-card-out"}`}
       style={emerging ? { animationDelay: `${delay}ms` } : undefined}
     >
       <div className="h-[165px] w-full shrink-0 overflow-hidden bg-[#F1EBFF]">
-        {project.image ? (
+        {isShipped ? (
+          <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-vp via-vp-strong to-[#B5179E]">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-10 w-10 text-white/90"
+              aria-hidden="true"
+            >
+              <rect x="3" y="4" width="18" height="16" rx="2" />
+              <path d="M8 10h8" />
+              <path d="M8 14h5" />
+            </svg>
+            <span className="font-mono text-lg font-extrabold tracking-widest text-white drop-shadow">
+              {project.title.toUpperCase()}
+            </span>
+          </div>
+        ) : project.id === "job-hunter" ? (
+          <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-[#022C22] via-[#065F46] to-[#0D9488]">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-10 w-10 text-white/90"
+              aria-hidden="true"
+            >
+              <path d="M5 7h14v13H5z" />
+              <path d="M8 7V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v3" />
+              <path d="M5 12h14" />
+            </svg>
+            <span className="font-mono text-lg font-extrabold tracking-widest text-white drop-shadow">
+              {project.title.toUpperCase()}
+            </span>
+          </div>
+        ) : project.image ? (
           <img
             src={project.image}
             alt={project.title}
             className="h-full w-full object-cover"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center">
-            <span className="font-mono text-[11px] font-bold tracking-widest text-vp/50">
-              {project.title}
+          <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-[#0F172A] via-[#1E3A8A] to-[#4F46E5]">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-10 w-10 text-white/90"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-3.5-3.5" />
+            </svg>
+            <span className="font-mono text-lg font-extrabold tracking-widest text-white drop-shadow">
+              {project.title.toUpperCase()}
             </span>
           </div>
         )}
@@ -48,7 +120,7 @@ export default function ProjectCard({
           {project.description}
         </p>
 
-        {isShipped && project.tags.length > 0 && (
+        {project.tags.length > 0 && (
           <div className="mt-3.5 flex flex-wrap gap-1.5">
             {project.tags.map((tag) => (
               <span
@@ -70,7 +142,7 @@ export default function ProjectCard({
                 rel="noopener noreferrer"
                 className="rounded-full bg-vp px-3.5 py-1.5 font-mono text-[11px] font-bold text-white transition-colors hover:bg-vp-strong"
               >
-                Live Demo ↗
+                Try App ↗
               </a>
             )}
             {project.github && (

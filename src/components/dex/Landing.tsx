@@ -1,15 +1,9 @@
-import { useState } from "react";
 import Header from "./Header";
 import PokeballButton from "./PokeballButton";
 import ProjectCard from "./ProjectCard";
 import ChatTerminal from "./ChatTerminal";
 import ProfileCard from "./ProfileCard";
 import { PROJECTS } from "../../data/projects";
-
-const AVATARS = {
-  PM: { image: "/pokemon-avatar.png", finger: { x: 0.474, y: 0.003 } },
-  MC: { image: "/vineet-consultant.png", finger: { x: 0.448, y: 0.010 } },
-} as const;
 
 export default function Landing({
   onOpenDex,
@@ -18,8 +12,6 @@ export default function Landing({
   onOpenDex: () => void;
   onOpenProjects: () => void;
 }) {
-  const [role] = useState<"PM" | "MC">("PM");
-
   function handleAvatarClick() {
     onOpenDex();
   }
@@ -42,42 +34,25 @@ export default function Landing({
       {/* AI Projects section */}
       <div
         id="ai-projects"
-        className="flex min-h-screen flex-col justify-center px-6 py-20 md:px-10"
+        className="flex min-h-screen flex-col justify-center px-4 py-20 md:px-10"
       >
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <p className="font-mono text-xs font-bold tracking-widest text-[#8B5FC9]">
-            AI Projects
-          </p>
-          <p className="font-mono text-[11px] font-bold tracking-wider text-[#8B5FC9]">
-            {PROJECTS.filter((p) => p.category === "SHIPPED").length} built ·{" "}
-            {PROJECTS.length} total
-          </p>
-        </div>
-        <div className="mt-3 border-t-2 border-vp/40" />
+        <div className="flex flex-col items-start gap-12 lg:flex-row lg:gap-14">
+          <div className="w-full max-w-sm shrink-0 lg:sticky lg:top-24">
+            <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-[#1a002c]">
+              AI Projects
+            </h1>
 
-        <div className="mt-10 flex flex-col items-start gap-12 lg:flex-row lg:gap-14">
-          <div className="w-full max-w-xs shrink-0">
-            <p className="text-left text-lg font-bold leading-snug tracking-tight text-[#1a002c]">
-              Exploring AI through product builds, real use cases, and creative play
+            <p className="mt-3 text-lg font-medium leading-relaxed text-slate-600">
+              Exploring AI through product builds, real use cases, and creative play.
             </p>
 
-            <div className="group relative mt-10">
-              <div
-                className="absolute z-20"
-                style={{
-                  left: `calc(${AVATARS[role].finger.x * 100}% - 14px)`,
-                  top: `calc(${AVATARS[role].finger.y * 100}% - 24px)`,
-                }}
-              >
-                <div className="origin-top scale-[0.28]">
-                  <PokeballButton onOpen={() => {}} />
-                </div>
-              </div>
-              <img
-                src={AVATARS[role].image}
-                alt="Vineet Agarwal"
-                className="-scale-x-100 h-44 w-auto object-contain transition-all md:h-64"
-              />
+            <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-vp/30 bg-vp/5 px-4 py-1.5 font-mono text-sm font-bold text-vp">
+              <span className="h-1.5 w-1.5 rounded-full bg-vp" />
+              {PROJECTS.length} Projects
+            </div>
+
+            <div className="mt-8 w-24">
+              <PokeballButton onOpen={() => {}} />
             </div>
           </div>
 

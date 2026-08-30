@@ -6,44 +6,49 @@ export default function Header({
   onOpenProjects: () => void;
 }) {
   return (
-    <header className="flex items-start justify-between px-6 pt-7 md:px-10">
-      <div className="flex items-center gap-6">
-        <div>
-          <h1 className="text-[24px] font-extrabold leading-none tracking-tight text-[#1A002C] md:text-[26px]">
-            Vineet Agarwal
-          </h1>
-          <p className="mt-1.5 text-[14px] text-[#64748b]">AI Product Manager</p>
+    <header className="relative w-full">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-8 pt-12">
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            aria-label="Back to top"
+            className="cursor-pointer rounded-full px-2 py-1 text-[13.5px] font-semibold text-slate-400 transition-colors hover:text-vp"
+          >
+            Top
+          </button>
+          <button
+            type="button"
+            onClick={onOpenAgent}
+            aria-label="Open AI Agent Chat"
+            className="vp-nav-btn vp-nav-agent cursor-pointer"
+          >
+            AI Agent
+          </button>
+          <button
+            type="button"
+            onClick={onOpenProjects}
+            aria-label="Open AI Projects"
+            className="vp-nav-btn vp-nav-projects cursor-pointer"
+          >
+            AI Projects
+          </button>
         </div>
-        <button
-          type="button"
-          onClick={onOpenAgent}
-          aria-label="Open AI Agent Chat"
-          className="vp-nav-btn vp-nav-agent cursor-pointer"
-        >
-          AI Agent
-        </button>
-        <button
-          type="button"
-          onClick={onOpenProjects}
-          aria-label="Open AI Projects"
-          className="vp-nav-btn vp-nav-projects cursor-pointer"
-        >
-          AI Projects
-        </button>
+        <div className="flex items-center gap-3">
+          <a href="mailto:va57@rice.edu" className="vp-nav-btn vp-nav-email">
+            Email
+          </a>
+          <a
+            href="https://calendly.com/avineet013/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="vp-nav-btn vp-nav-coffee"
+          >
+            Coffee Chat
+          </a>
+        </div>
       </div>
-      <div className="flex gap-2.5">
-        <a href="mailto:va57@rice.edu" className="vp-nav-btn vp-nav-email">
-          Email
-        </a>
-        <a
-          href="https://calendly.com/avineet013/30min"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="vp-nav-btn vp-nav-coffee"
-        >
-          Coffee Chat
-        </a>
-      </div>
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-vp/40 to-transparent" />
     </header>
   );
 }

@@ -1,5 +1,7 @@
 import Footer from "./components/dex/Footer";
 import Landing from "./components/dex/Landing";
+import ProfessionalJourney from "./components/dex/ProfessionalJourney";
+import SectionDivider from "./components/dex/SectionDivider";
 import Ventures from "./components/dex/Ventures";
 
 export default function App() {
@@ -13,7 +15,16 @@ export default function App() {
         onOpenProjects={() => scrollTo("ai-projects")}
       />
 
+      <SectionDivider />
+
+      <ProfessionalJourney />
+
+      <SectionDivider />
+
       <Ventures />
+
+      <SectionDivider />
+
       <Footer />
     </main>
   );
