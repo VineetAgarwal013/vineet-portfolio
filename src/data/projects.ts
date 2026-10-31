@@ -36,8 +36,9 @@ export const PROJECTS: Project[] = [
     description:
       "Finds people at a chosen company, role and city, Rice alumni first, ranks them by shared background and drafts a LinkedIn note.",
     tags: ["Networking", "Brave Search", "Supabase", "MVP"],
-    category: "IN LAB",
+    category: "SHIPPED",
     image: "/projects/_card-design.png",
+    demo: "https://rice-alumni-finder.vercel.app/",
   },
   {
     id: "job-hunter",

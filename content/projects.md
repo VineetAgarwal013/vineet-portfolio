@@ -34,7 +34,7 @@ Instead of presenting a static resume, Vineet's AI assistant creates an interact
 
 ## Rice Alumni Finder
 
-Rice Alumni Finder is a networking tool Vineet is building as a Rice MBA student. It is in the lab: it runs on his computer and is not public yet.
+Rice Alumni Finder is a networking tool Vineet built as a Rice MBA student. It has a public live demo at https://rice-alumni-finder.vercel.app, where each visitor can run a few searches a day.
 
 A student says who they want to reach (a company, a job title such as Product Manager, and a location such as Houston) and adds a little about their own background. The tool searches public web results, finds people who currently match all three, and shows Rice alumni first.
 
