@@ -31,11 +31,11 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "alumni-finder",
-    title: "Alumni Finder",
+    title: "Rice Alumni Finder",
     subtitle: "Smart Networking",
     description:
-      "AI-powered tool designed to search, filter, and surface structured candidate profiles using natural language.",
-    tags: ["Automation", "n8n", "AI Agent", "MVP"],
+      "Finds people at a chosen company, role and city, Rice alumni first, ranks them by shared background and drafts a LinkedIn note.",
+    tags: ["Networking", "Brave Search", "Supabase", "MVP"],
     category: "IN LAB",
     image: "/projects/_card-design.png",
   },

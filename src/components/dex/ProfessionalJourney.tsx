@@ -76,7 +76,7 @@ export default function ProfessionalJourney() {
         </div>
 
         <div className="grid flex-1 grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
-        {JOURNEY.map((entry, i) => (
+        {JOURNEY.map((entry) => (
           <div key={entry.period + entry.role} className="relative">
             <div className="absolute left-0 right-0 top-8 hidden h-0.5 bg-purple-200 md:block" />
 
