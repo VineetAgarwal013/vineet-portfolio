@@ -1,6 +1,6 @@
-import { retrieveContext } from "./lib/pinecone";
-import { complete, type ChatMessage } from "./lib/engine";
-import { buildSystemPrompt, buildMessages } from "./lib/prompt";
+import { retrieveContext } from "./lib/pinecone.js";
+import { complete, type ChatMessage } from "./lib/engine.js";
+import { buildSystemPrompt, buildMessages } from "./lib/prompt.js";
 
 export const config = { runtime: "nodejs" };
 
@@ -41,7 +41,8 @@ export default async function handler(
     : [];
 
   try {
-    const context = await retrieveContext(message, 4, 0.78);
+    // gemini-embedding-001 scores relevant chunks ~0.55–0.85; the prompt handles off-topic context.
+    const context = await retrieveContext(message, 5, 0.5);
     const system = buildSystemPrompt(context);
     const messages = buildMessages(system, history, message);
     const text = await complete(messages);

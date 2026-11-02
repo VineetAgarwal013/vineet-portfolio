@@ -1,8 +1,8 @@
-import type { ChatMessage } from "./types";
-import { embed as embedOpenAI, complete as completeOpenAI } from "./providers/openai";
-import { embed as embedGemini, complete as completeGemini } from "./providers/gemini";
+import type { ChatMessage } from "./types.js";
+import { embed as embedOpenAI, complete as completeOpenAI } from "./providers/openai.js";
+import { embed as embedGemini, complete as completeGemini } from "./providers/gemini.js";
 
-export type { ChatMessage } from "./types";
+export type { ChatMessage } from "./types.js";
 
 function provider(name: "EMBEDDING_PROVIDER" | "LLM_PROVIDER", fallback: string): string {
   return (process.env[name] || fallback).toLowerCase();

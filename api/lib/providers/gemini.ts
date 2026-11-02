@@ -1,5 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
-import type { ChatMessage } from "../types";
+import type { ChatMessage } from "../types.js";
 
 let client: GoogleGenAI | null = null;
 
@@ -12,13 +12,17 @@ function getClient(): GoogleGenAI {
   return client;
 }
 
+// Pinecone index dimension must match: gemini-embedding-001 is truncated to 768.
+const EMBEDDING_DIM = 768;
+
 export async function embed(
   text: string,
-  model = "text-embedding-004",
+  model = process.env.EMBEDDING_MODEL || "gemini-embedding-001",
 ): Promise<number[]> {
   const res: any = await getClient().models.embedContent({
     model,
     contents: text,
+    config: { outputDimensionality: EMBEDDING_DIM },
   });
   const values =
     res?.embeddings?.[0]?.values ?? res?.embedding?.values;
@@ -29,7 +33,7 @@ export async function embed(
 }
 
 export async function complete(messages: ChatMessage[]): Promise<string> {
-  const model = process.env.LLM_MODEL || "gemini-1.5-flash";
+  const model = process.env.LLM_MODEL || "gemini-3.5-flash";
   const system = messages.find((m) => m.role === "system")?.content ?? "";
   const contents = messages
     .filter((m) => m.role !== "system")
@@ -40,8 +44,8 @@ export async function complete(messages: ChatMessage[]): Promise<string> {
 
   const res: any = await getClient().models.generateContent({
     model,
-    systemInstruction: system,
     contents,
+    config: { systemInstruction: system, temperature: 0.1 },
   });
 
   const text =

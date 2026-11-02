@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import type { ChatMessage } from "../types";
+import type { ChatMessage } from "../types.js";
 
 let client: OpenAI | null = null;
 

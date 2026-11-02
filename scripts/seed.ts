@@ -104,7 +104,7 @@ async function main() {
     process.env.EMBEDDING_MODEL ||
     (embeddingProvider === "openai"
       ? "text-embedding-3-small"
-      : "text-embedding-004");
+      : "gemini-embedding-001");
   const index = getIndex();
 
   let expectedDim: number | undefined;

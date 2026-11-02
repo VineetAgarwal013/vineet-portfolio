@@ -1,5 +1,5 @@
 import { Pinecone } from "@pinecone-database/pinecone";
-import { embed } from "./engine";
+import { embed } from "./engine.js";
 
 let client: Pinecone | null = null;
 

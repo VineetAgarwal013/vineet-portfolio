@@ -1,4 +1,4 @@
-import type { ChatMessage } from "./engine";
+import type { ChatMessage } from "./engine.js";
 
 export function buildSystemPrompt(
   context: { text: string; source: string; title: string }[],
