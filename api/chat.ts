@@ -12,7 +12,11 @@ async function standaloneQuestion(
   history: ChatMessage[],
   message: string,
 ): Promise<string> {
-  if (!history.some((h) => h.role === "user")) return message;
+  // Each rewrite is an extra LLM call (free tier: 5/min), so only rewrite real follow-ups.
+  // A plain pronoun ("does he like sports?") is already handled by the name prefix.
+  const followUp =
+    /^(and|also|so|then|what about|how about|why|more)\b|\b(that|this|it|there|those|then|same|else|year|role|project|one)\b/i;
+  if (!history.some((h) => h.role === "user") || !followUp.test(message)) return message;
   const transcript = history
     .slice(-6)
     .map((h) => `${h.role === "user" ? "Visitor" : "Assistant"}: ${h.content.slice(0, 600)}`)
