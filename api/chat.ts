@@ -39,7 +39,9 @@ async function standaloneQuestion(
   }
 }
 
-export default async function handler(
+// Vercel's Node runtime only uses a returned Response from named method exports;
+// a default export is treated as (req, res) and its return value is ignored.
+export async function POST(
   req: Request,
 ): Promise<Response> {
   if (req.method !== "POST") {
