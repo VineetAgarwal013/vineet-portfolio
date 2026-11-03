@@ -1,6 +1,7 @@
 import type { ChatMessage } from "./types.js";
 import { embed as embedOpenAI, complete as completeOpenAI } from "./providers/openai.js";
 import { embed as embedGemini, complete as completeGemini } from "./providers/gemini.js";
+import { complete as completeGroq } from "./providers/groq.js";
 
 export type { ChatMessage } from "./types.js";
 
@@ -16,7 +17,9 @@ export async function embed(text: string, model?: string): Promise<number[]> {
 }
 
 export async function complete(messages: ChatMessage[]): Promise<string> {
-  if (provider("LLM_PROVIDER", "gemini") === "openai") {
+  const llm = provider("LLM_PROVIDER", "gemini");
+  if (llm === "groq") return completeGroq(messages);
+  if (llm === "openai") {
     return completeOpenAI(messages);
   }
   return completeGemini(messages);

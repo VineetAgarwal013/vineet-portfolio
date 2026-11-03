@@ -34,7 +34,8 @@ add GEMINI_API_KEY "$(val GEMINI_API_KEY)" --sensitive
 add PINECONE_API_KEY "$(val PINECONE_API_KEY)" --sensitive
 add PINECONE_INDEX "$(val PINECONE_INDEX)"
 add EMBEDDING_PROVIDER "$(val EMBEDDING_PROVIDER)"
-add LLM_PROVIDER "$(val LLM_PROVIDER)"
+add GROQ_API_KEY "$(val GROQ_API_KEY)" --sensitive
+add LLM_PROVIDER groq
 add EMBEDDING_MODEL "$(val EMBEDDING_MODEL)"
 add LLM_MODEL "$(val LLM_MODEL)"
 echo "Done. Values aren't shown; check names with:"
