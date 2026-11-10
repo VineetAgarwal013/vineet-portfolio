@@ -1,5 +1,14 @@
 # Projects
 
+## Overview of Vineet's AI projects
+
+The AI projects Vineet has built include:
+
+- Vineet's AI assistant: the retrieval augmented generation (RAG) chatbot on his portfolio website, which answers questions about his background using a Pinecone knowledge base.
+- Rice Alumni Finder: a networking tool, with a public live demo, that finds people at a chosen company, job title and location, shows Rice alumni first, and drafts a LinkedIn connection note.
+
+He is also building or planning a task manager (Taskly AI), Job Hunter, and Excel Sticky Keys. Details on those will be added later.
+
 ## Vineet's AI assistant
 
 Vineet's AI assistant is Vineet's personal AI chatbot built into his portfolio website.

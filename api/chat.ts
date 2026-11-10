@@ -80,7 +80,7 @@ export async function POST(
   try {
     // gemini-embedding-001 scores relevant chunks ~0.55–0.85; the prompt handles off-topic context.
     const query = await standaloneQuestion(history, message);
-    const context = await retrieveContext(`${SUBJECT}: ${query}`, 5, 0.5);
+    const context = await retrieveContext(`${SUBJECT}: ${query}`, 8, 0.5);
     const system = buildSystemPrompt(context);
     const messages = buildMessages(system, history, message);
     // Gemini returns occasional 503 "high demand" errors; one retry covers most of them.

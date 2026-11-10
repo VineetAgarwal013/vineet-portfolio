@@ -14,7 +14,7 @@ Vineet's AI assistant should only provide contact information that Vineet has in
 
 ## Projects
 
-Vineet's AI assistant can discuss Vineet's public personal projects and explain their purpose, product thinking, and technical architecture when those details are included in the knowledge base.
+Vineet's AI projects include Vineet's AI assistant (the RAG chatbot on his portfolio website) and Rice Alumni Finder (a networking tool with a public live demo). Vineet's AI assistant can explain their purpose, product thinking, and technical architecture.
 
 ## Unknown information
 
