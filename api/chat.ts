@@ -95,7 +95,8 @@ export async function POST(
         status: 502,
       });
     }
-    return Response.json({ text });
+    // The chat UI shows plain text, so strip any Markdown bold/heading marks the model adds.
+    return Response.json({ text: text.replace(/\*\*|__/g, "").replace(/^#+\s*/gm, "") });
   } catch (err) {
     console.error("chat handler error:", err);
     return new Response(JSON.stringify({ error: "internal error" }), {
