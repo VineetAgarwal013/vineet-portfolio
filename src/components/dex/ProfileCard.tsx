@@ -30,7 +30,7 @@ export default function ProfileCard() {
         className="h-[200px] w-[200px] rounded-2xl border-2 border-indigo-100 object-cover object-top shadow-sm"
       />
 
-      <h1 className="mt-5 text-3xl font-bold tracking-tight text-slate-900">Vineet Agarwal</h1>
+      <h1 className="mt-5 text-4xl font-extrabold tracking-tight text-slate-900">Vineet Agarwal</h1>
       <p className="mt-1 text-base font-semibold text-[#6366F1]">AI Product Manager</p>
       <p className="mt-0.5 text-sm text-slate-500">Rice MBA · Engineer</p>
 
@@ -43,6 +43,7 @@ export default function ProfileCard() {
           className="flex items-center gap-1.5 rounded-lg bg-[#0A66C2] px-3 py-1.5 text-sm font-semibold text-white transition-transform hover:scale-105"
         >
           <LinkedinIcon size={16} />
+          LinkedIn
         </a>
         <a
           href="https://github.com/VineetAgarwal013"

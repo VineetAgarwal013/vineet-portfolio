@@ -52,30 +52,28 @@ const LOGO_COLORS = ["bg-slate-800 text-white", "bg-vp text-white", "bg-[#0F172A
 
 export default function ProfessionalJourney() {
   return (
-    <section className="mx-auto w-full max-w-6xl px-4 pb-16 pt-4 md:px-10">
-      <div className="flex flex-col items-start gap-12 lg:flex-row lg:gap-14">
-        <div className="w-full max-w-sm shrink-0 lg:sticky lg:top-24">
-          <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-[#1a002c]">
+    <section className="mx-auto w-full px-6 md:px-36 py-16">
+      <div className="flex items-end justify-between gap-6">
+        <div>
+          <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-[#1a002c]">
             Professional Journey
-          </h1>
-
-          <p className="mt-3 text-lg font-medium leading-relaxed text-slate-600">
+          </h2>
+          <p className="mt-2 text-lg font-medium leading-relaxed text-slate-600">
             Where I&apos;ve worked, led, and shipped along the way.
           </p>
-
-          <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-vp/30 bg-vp/5 px-4 py-1.5 font-mono text-sm font-bold text-vp">
+          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-vp/30 bg-vp/5 px-4 py-1.5 font-mono text-sm font-bold text-vp">
             <span className="h-1.5 w-1.5 rounded-full bg-vp" />
             {JOURNEY.length} Roles
           </div>
-
-          <img
-            src="/vineet-consultant.png"
-            alt="Vineet Agarwal"
-            className="-scale-x-100 mt-10 h-52 w-auto object-contain md:h-64"
-          />
         </div>
+        <img
+          src="/vineet-consultant.png"
+          alt="Vineet Agarwal"
+          className="-scale-x-100 hidden h-40 w-auto shrink-0 object-contain sm:block"
+        />
+      </div>
 
-        <div className="grid flex-1 grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {JOURNEY.map((entry) => (
           <div key={entry.period + entry.role} className="relative">
             <div className="absolute left-0 right-0 top-8 hidden h-0.5 bg-purple-200 md:block" />
@@ -97,7 +95,7 @@ export default function ProfessionalJourney() {
                 {entry.points.map((p) => (
                   <li
                     key={p.text}
-                    className="flex items-start gap-2 text-xs leading-relaxed text-slate-600"
+                    className="flex items-start gap-2 text-sm leading-relaxed text-slate-600"
                   >
                     <span className="shrink-0 leading-none" aria-hidden="true">
                       {p.emoji}
@@ -110,7 +108,7 @@ export default function ProfessionalJourney() {
               {entry.workedWith && (
                 <>
                   <div className="mt-4 flex items-center gap-2 border-t border-slate-200 pt-3">
-                    <span className="text-[11px] font-medium text-slate-400">Worked with</span>
+                    <span className="text-xs font-medium text-slate-400">Worked with</span>
                     <div className="flex gap-1.5">
                       {entry.workedWith.map((l, j) => (
                         <span
@@ -129,7 +127,6 @@ export default function ProfessionalJourney() {
             </div>
           </div>
         ))}
-      </div>
       </div>
     </section>
   );

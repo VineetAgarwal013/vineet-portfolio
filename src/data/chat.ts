@@ -5,7 +5,7 @@ export type ChatMessage = {
 };
 
 export const WELCOME_MESSAGE =
-  "Hi! I'm Vineet's AI assistant. Ask me anything about his product roadmap experience, technical AI background, or Rice MBA journey.\n\nTry: Work Experience · Projects · Skills · MBA Journey · Product Strategy";
+  "Hi! I'm Vineet's AI assistant. Ask me anything about his product roadmap experience, technical AI background, or Rice MBA journey.";
 
 export const EMAIL = "va57@rice.edu";
 export const PHONE = "+1 (408) 627-5574";

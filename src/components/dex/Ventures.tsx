@@ -26,21 +26,17 @@ const VENTURES = [
 export default function Ventures() {
   return (
     <section id="ventures" className="scroll-mt-24">
-      <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-4 md:px-10">
-        <div className="flex items-center gap-3">
-          <span className="h-2 w-2 rounded-full bg-magenta shadow-[0_0_8px_rgba(181,23,158,0.9)]" />
-          <h2 className="font-mono text-[11px] font-bold uppercase tracking-widest text-vp">
-            Personal Projects & Entrepreneurship
-          </h2>
-          <span className="h-px flex-1 bg-[#1a002c]/15" />
-        </div>
+      <div className="mx-auto w-full px-6 md:px-36 py-16">
+        <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-[#1a002c]">
+          Personal Projects &amp; Entrepreneurship
+        </h2>
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2"
+          className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2"
         >
           {VENTURES.map((v) => (
             <div
@@ -51,17 +47,17 @@ export default function Ventures() {
                 <h3 className="text-base font-extrabold tracking-tight text-[#1a002c]">
                   {v.name}
                 </h3>
-                <span className="rounded-full border border-magenta/40 bg-magenta/15 px-2 py-0.5 font-mono text-[9px] text-magenta">
+                <span className="rounded-full border border-magenta/40 bg-magenta/15 px-2 py-0.5 font-mono text-xs text-magenta">
                   {v.tag}
                 </span>
               </div>
               <p className="mt-3 font-mono text-[26px] font-bold tracking-tight text-vp-strong">
                 {v.stat}
               </p>
-              <p className="mt-1 text-[12px] text-slate-500">{v.statLabel}</p>
+              <p className="mt-1 text-sm text-slate-500">{v.statLabel}</p>
               <ul className="mt-3 space-y-1.5 border-t border-[#1a002c]/10 pt-3">
                 {v.points.map((p) => (
-                  <li key={p} className="flex gap-2 text-[13px] leading-relaxed text-slate-600">
+                  <li key={p} className="flex gap-2 text-sm leading-relaxed text-slate-600">
                     <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-vp-strong" />
                     {p}
                   </li>

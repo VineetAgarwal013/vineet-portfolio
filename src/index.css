@@ -189,7 +189,7 @@ body {
   letter-spacing: 0.3px;
   text-decoration: none;
   border: 1px solid rgba(123, 44, 191, 0.18);
-  border-radius: 9999px;
+  border-radius: 8px;
   box-shadow: 0 2px 10px rgba(123, 44, 191, 0.08);
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
@@ -295,4 +295,8 @@ body {
     opacity: 0;
     transform: translateY(28px) scale(0.7);
   }
+}
+/* Compact Pokéball beside section headings */
+.vp-ball-sm .vp-ball {
+  width: 88px;
 }

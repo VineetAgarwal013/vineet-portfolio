@@ -32,7 +32,7 @@ export default function ProjectCard({
           handleClick();
         }
       }}
-      className={`pp-card flex w-[290px] cursor-pointer flex-col overflow-hidden rounded-[14px] border border-gray-200/90 bg-white shadow-[0_6px_24px_rgba(0,0,0,0.07)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_rgba(0,0,0,0.14)] active:scale-95 ${
+      className={`pp-card flex w-full cursor-pointer flex-col overflow-hidden rounded-[14px] border border-gray-200/90 bg-white shadow-[0_6px_24px_rgba(0,0,0,0.07)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_rgba(0,0,0,0.14)] active:scale-95 ${
         zoom ? "scale-[1.06]" : ""
       } ${emerging ? "" : "pp-card-out"}`}
       style={emerging ? { animationDelay: `${delay}ms` } : undefined}
